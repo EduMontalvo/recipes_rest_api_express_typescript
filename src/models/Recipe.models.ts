@@ -21,6 +21,11 @@ class Recipe extends Model{
         type:DataType.STRING(2000)
     })
     declare preparation: string
+    @Default(true)
+    @Column({
+        type: DataType.BOOLEAN
+    })
+    declare revised:boolean
 }
 
 export default Recipe
