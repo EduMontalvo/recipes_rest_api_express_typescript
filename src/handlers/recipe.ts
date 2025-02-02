@@ -36,7 +36,7 @@ export const updateRevised = async (req: Request, res: Response) => {
         await recipe.save()
         res.status(200).json({ data: recipe })
     } else {
-        res.status(404).json({ error: 'Receta no encontrada ' })
+        res.status(404).json({ error: 'Receta no encontrada' })
     }
 }
 export const deleteRecipe = async (req: Request, res: Response) => {
