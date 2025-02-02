@@ -13,7 +13,6 @@ router.get('/:id',
     handleInputErrors,
     getRecipeByID)
 router.post('/',
-    param('id').isInt().withMessage('El id no es valido'),
     body('recipe_name')
         .notEmpty().withMessage('El campo recipe_name no puede ir vacio')
         .isString().withMessage('El campo recipe_name no puede ser un numero'),
@@ -22,7 +21,7 @@ router.post('/',
         .bail()
         .isNumeric().withMessage('El campo quantity no puede ser un texto')
         .bail()
-        .custom(value => value > 0).withMessage('El campo quantity no puede ser un numero negativo'),
+        .custom(value => value > 0).withMessage('El campo no valido'),
     body('recipe_ingredient')
         .notEmpty().withMessage('El campo ingredient no puede ir vacio')
         .isString().withMessage('El campo recipe_ingredient no puede ser un numero'),
