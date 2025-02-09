@@ -20,7 +20,7 @@ class Recipe extends Model{
     @Column({
         type:DataType.STRING(2000)
     })
-    declare preparation: string
+    declare recipe_preparation: string
     @Default(true)
     @Column({
         type: DataType.BOOLEAN
