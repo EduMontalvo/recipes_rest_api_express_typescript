@@ -8,7 +8,7 @@ class Recipe extends Model{
     @Column({
         type:DataType.STRING(50)
     })
-    declare recipe_name: string
+    declare name: string
     @Column({
         type:DataType.INTEGER
     })
@@ -16,11 +16,11 @@ class Recipe extends Model{
     @Column({
         type:DataType.STRING(2000)
     })
-    declare recipe_ingredient: string
+    declare ingredients: string
     @Column({
         type:DataType.STRING(2000)
     })
-    declare recipe_preparation: string
+    declare preparation: string
     @Default(true)
     @Column({
         type: DataType.BOOLEAN

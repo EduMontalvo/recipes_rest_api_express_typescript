@@ -16,7 +16,7 @@ const router = Router()
  *                      type: number
  *                      description: The recipe id
  *                      example: 1
- *                  recipe_name:
+ *                  name:
  *                      type: string
  *                      description: The recipe name
  *                      example: Lomo Saltado
@@ -24,11 +24,11 @@ const router = Router()
  *                      type: number
  *                      description: The recipe quantity 
  *                      example: 12
- *                  recipe_ingredient:
+ *                  ingredients:
  *                      type: string
  *                      description: The recipe ingredients
  *                      example: 500g de lomo de res     
- *                  recipe_preparation:
+ *                  preparation:
  *                      type: string,
  *                      description: The recipe preparation
  *                      example: Corta el lomo de res en tiras
@@ -109,16 +109,16 @@ router.get('/:id',
  *                  schema:
  *                      type: object
  *                      properties:
- *                          recipe_name:
+ *                          name:
  *                              type: string
  *                              example: Lomo Saltado 
  *                          quantity:
  *                              type: integer
  *                              example: 12
- *                          recipe_ingredient:
+ *                          ingredients:
  *                              type: string
  *                              example: 500g de lomo de res, 2 cucharadas de   aceite, 1 cebolla roja cortada en plumas, 2 tomates cortados en gajos, 1 ají amarillo (opcional) cortado en tiras, 2 cucharadas de salsa de soja, 1 cucharada de vinagre, sal y pimienta al gusto, cilantro picado (para decorar), papas fritas (para acompañar), arroz blanco (para acompañar)
- *                          recipe_preparation:
+ *                          preparation:
  *                              type: string
  *                              example: Corta el lomo de res en tiras. En una sartén grande, calienta el aceite y dora la carne a fuego alto. Agrega la cebolla y el ají amarillo, y saltea por unos minutos. Incorpora los tomates y cocina por un par de minutos más. Añade la salsa de soja, el vinagre, sal y pimienta al gusto. Sirve caliente, decorado con cilantro y acompañado de papas fritas y arroz blanco.
  *      responses:
@@ -128,19 +128,19 @@ router.get('/:id',
  *              description: Bad Request
  */
 router.post('/',
-    body('recipe_name')
-        .notEmpty().withMessage('El campo recipe_name no puede ir vacio')
-        .isString().withMessage('El campo recipe_name no puede ser un numero'),
+    body('name')
+        .notEmpty().withMessage('El campo name no puede ir vacio')
+        .isString().withMessage('El campo name no puede ser un numero'),
     body('quantity')
         .notEmpty().withMessage('EL campo quantity no puede ir vacio')
         .bail()
         .isNumeric().withMessage('El campo quantity no puede ser un texto')
         .bail()
         .custom(value => value > 0).withMessage('El campo no valido'),
-    body('recipe_ingredient')
+    body('ingredients')
         .notEmpty().withMessage('El campo ingredient no puede ir vacio')
-        .isString().withMessage('El campo recipe_ingredient no puede ser un numero'),
-    body('recipe_preparation')
+        .isString().withMessage('El campo ingredients no puede ser un numero'),
+    body('preparation')
         .notEmpty().withMessage('El campo preparation no puede ir vacio')
         .isString().withMessage('El campo preparation no puede ser un numero'),
     handleInputErrors,
@@ -167,16 +167,16 @@ router.post('/',
  *                  schema:
  *                      type: object
  *                      properties:
- *                          recipe_name:
+ *                          name:
  *                              type: string
  *                              example: Lomo Saltado 
  *                          quantity:
  *                              type: integer
  *                              example: 12
- *                          recipe_ingredient:
+ *                          ingredients:
  *                              type: string
  *                              example: 500g de lomo de res, 2 cucharadas de   aceite, 1 cebolla roja cortada en plumas, 2 tomates cortados en gajos, 1 ají amarillo (opcional) cortado en tiras, 2 cucharadas de salsa de soja, 1 cucharada de vinagre, sal y pimienta al gusto, cilantro picado (para decorar), papas fritas (para acompañar), arroz blanco (para acompañar)
- *                          recipe_preparation:
+ *                          preparation:
  *                              type: string
  *                              example: Corta el lomo de res en tiras. En una sartén grande, calienta el aceite y dora la carne a fuego alto. Agrega la cebolla y el ají amarillo, y saltea por unos minutos. Incorpora los tomates y cocina por un par de minutos más. Añade la salsa de soja, el vinagre, sal y pimienta al gusto. Sirve caliente, decorado con cilantro y acompañado de papas fritas y arroz blanco.
  *                          revised:
@@ -194,19 +194,19 @@ router.post('/',
  */
 router.put('/:id',
     param('id').isInt().withMessage('El id no es valido'),
-    body('recipe_name')
-        .notEmpty().withMessage('El campo recipe_name no puede ir vacio')
-        .isString().withMessage('El campo recipe_name no puede ser un numero'),
+    body('name')
+        .notEmpty().withMessage('El campo name no puede ir vacio')
+        .isString().withMessage('El campo name no puede ser un numero'),
     body('quantity')
         .notEmpty().withMessage('EL campo quantity no puede ir vacio')
         .bail()
         .isNumeric().withMessage('El campo quantity no puede ser un texto')
         .bail()
         .custom(value => value > 0).withMessage('El campo quantity no puede ser un numero negativo'),
-    body('recipe_ingredient')
+    body('ingredients')
         .notEmpty().withMessage('El campo ingredient no puede ir vacio')
-        .isString().withMessage('El campo recipe_ingredient no puede ser un numero'),
-    body('recipe_preparation')
+        .isString().withMessage('El campo ingredients no puede ser un numero'),
+    body('preparation')
         .notEmpty().withMessage('El campo preparation no puede ir vacio')
         .isString().withMessage('El campo preparation no puede ser un numero'),
     body('revised')

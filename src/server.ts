@@ -1,5 +1,7 @@
 import express from "express";
 import router from "./router";
+import cors, { CorsOptions } from 'cors'
+import morgan from 'morgan'
 import db from "./config/db";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpecs, { swaggerUiOptions } from "./config/swagger";
@@ -19,6 +21,19 @@ export async function connectDB() {
 connectDB()
 
 const server = express()
+
+const corsOptions: CorsOptions = {
+    origin: function (origin, callback) {
+        if (origin === process.env.FRONTEND_URL) {
+            callback(null, true)
+        } else {
+            console.log(new Error('Error de  CORS'))
+        }
+    }
+}
+server.use(cors(corsOptions))
+
+server.use(morgan('dev'))
 
 server.use(express.json())
 
