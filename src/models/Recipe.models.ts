@@ -1,4 +1,4 @@
-import {Table,Column,Model,DataType,Default} from 'sequelize-typescript'
+import {Table,Column,Model,DataType,Default, AllowNull} from 'sequelize-typescript'
 
 @Table({
     tableName: 'recipes'
@@ -21,6 +21,11 @@ class Recipe extends Model{
         type:DataType.STRING(2000)
     })
     declare preparation: string
+    @Column({
+        type: DataType.STRING(2000),
+        allowNull:true
+    })
+    declare imageURL?:string
     @Default(true)
     @Column({
         type: DataType.BOOLEAN

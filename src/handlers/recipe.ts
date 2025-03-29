@@ -44,7 +44,7 @@ export const deleteRecipe = async (req: Request, res: Response) => {
     const recipe = await Recipe.findByPk(id)
     if (recipe) {
         await recipe.destroy()
-        res.json({ data: 'Receta eiminada exitosamente' })
+        res.json({ data: 'Receta eliminada exitosamente' })
     } else {
         res.status(404).json({ error: 'Receta no encontrada' })
     }
